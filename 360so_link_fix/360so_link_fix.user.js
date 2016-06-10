@@ -9,16 +9,17 @@
 // @namespace           http://hzy.pw
 // @homepageURL         http://hzy.pw/p/2056
 // @license             GPL-3.0
-// @supportURL          https://github.com/h2y/link-fix
 // @icon                https://p.ssl.qhimg.com/t011a6c04685b5d3b80.png
-
-// @include             https://www.so.com/s?*
 // @grant               none
 // @run-at              document_end
+
+// @include             https://www.so.com/s?*
 
 // @date                06/09/2016
 // @modified            06/10/2016
 // @version             1.0.0.0
+
+// @supportURL          https://github.com/h2y/link-fix
 // ==/UserScript==
 
 

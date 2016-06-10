@@ -9,16 +9,17 @@
 // @namespace           http://hzy.pw
 // @homepageURL         http://hzy.pw/p/2056
 // @license             GPL-3.0
-// @supportURL          https://github.com/h2y/link-fix
 // @icon                https://pic1.zhimg.com/2e33f063f1bd9221df967219167b5de0_m.jpg
-
-// @include             *.zhihu.com/*
 // @grant               none
 // @run-at              document_end
+
+// @include             *.zhihu.com/*
 
 // @date                06/10/2016
 // @modified            06/10/2016
 // @version             1.0.0.0
+
+// @supportURL          https://github.com/h2y/link-fix
 // ==/UserScript==
 
 
