@@ -16,31 +16,29 @@
 // @include             *.zhihu.com/*
 
 // @date                06/10/2016
-// @modified            06/10/2016
-// @version             1.0.0.0
+// @modified            06/11/2016
+// @version             1.0.1.1
 
 // @supportURL          https://github.com/h2y/link-fix
 // ==/UserScript==
 
 
-!function() {
 
-    document.body.addEventListener('click', function(e){
-        fix(e.target, 3);
-    });
-
-    function fix(node, find_times) {
-        if(node.nodeName.toUpperCase()==='A') {
-            var old = node.href;
-            if( old && old.indexOf('link.zhihu.com/?')>=0 ) {
+document.body.addEventListener('click', function(e){
+    var dom = e.target,
+        max_times = 3;
+    while (dom && max_times--) {
+        if(dom.nodeName.toUpperCase()==='A') {
+            var old = dom.href;
+            if( old && old.indexOf('//link.zhihu.com/?')>=0 ) {
                 old = old.match(/target=(.*?)(&|$)/);
                 if(old && old.length>=2) {
-                    node.href = decodeURIComponent(old[1]);
+                    dom.href = decodeURIComponent(old[1]);
                 }
             }
+            return;
         }
-        else if (find_times>0 && node.parentNode)
-            fix(node.parentNode, --find_times);
+        else
+            dom = dom.parentNode;
     }
-
-}();
+});
