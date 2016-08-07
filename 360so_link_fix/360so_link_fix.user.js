@@ -16,8 +16,8 @@
 // @include             https://www.so.com/s?*
 
 // @date                06/09/2016
-// @modified            06/10/2016
-// @version             1.0.0.0
+// @modified            08/07/2016
+// @version             1.0.1.1
 
 // @supportURL          https://github.com/h2y/link-fix
 // ==/UserScript==
@@ -41,7 +41,7 @@
         var num = 0,
             as = dom.querySelectorAll('a');
         for(var i=0; i<as.length; i++) {
-            var old = as[i].href.match(/url=(.*?)(&|$)/);
+            var old = as[i].href.match(/url=(.+?)(&|$)/);
             if(old && old.length>=2) {
                 as[i].href = decodeURIComponent(old[1]);
                 num++;
