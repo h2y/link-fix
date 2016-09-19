@@ -1,6 +1,6 @@
-# 真实链接地址重定向
+# H2y's Userscripts
 
-这是数个独立的 UserScript 浏览器脚本，实现不同网站的链接重定向功能，均可独立使用。由于功能类似，所以共用这一个 Git 仓库。
+这是数个独立的 UserScript 浏览器脚本，实现不同的功能，均可独立使用。共用这一个 Git 仓库。
 
 如果你不知道浏览器脚本是什么，我的这篇文章会给与你帮助：[<使用UserScript加强你的浏览器>](https://hzy.pw/p/1872)，一定会让你受益匪浅。
 
@@ -51,3 +51,4 @@
 - AC-Baidu：绕过百度重定向直接访问网页：<https://greasyfork.org/zh-CN/scripts/14178>
 - Google：绕过搜索结果网页链接重定向：<https://greasyfork.org/zh-CN/scripts/14150>
 - soTab：搜索引擎一键切换：<https://greasyfork.org/zh-CN/scripts/14856>
+- 自动在中英文之间加上个空格：<https://greasyfork.org/zh-CN/scripts/2185>
