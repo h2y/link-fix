@@ -12,11 +12,12 @@
 // @supportURL          https://github.com/h2y/link-fix
 // @icon                https://hzy.pw/wp-content/uploads/2015/08/i-300x300.jpg
 // @license             GPL-3.0
+// @updateURL           https://github.com/h2y/link-fix/raw/master/taobao_sort/taobao_sort.user.js
 
 // @include             /^https?://s.taobao.com/search\?.+/
 // @include             /^https?://list.tmall.com/search_product.htm\?.+/
 // @grant               none
-// @run-at              document_start
+// @run-at              document-start
 
 // @date                08/05/2015
 // @modified            06/11/2016

@@ -12,12 +12,13 @@
 // @supportURL          https://github.com/h2y/link-fix
 // @icon                https://hzy.pw/wp-content/uploads/2015/04/i.jpeg
 // @license             GPL-3.0
+// @updateURL           https://github.com/h2y/link-fix/raw/master/auto_jd/auto_jd.user.js
 
 // @include             *//search.jd.com/*
 // @include             *//www.jd.com/pinpai/*
 // @include             *//list.jd.com/list.html?*
 // @grant               none
-// @run-at              document_start
+// @run-at              document-start
 
 // @version             2.3.3
 // @modified            09/16/2016

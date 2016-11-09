@@ -12,9 +12,10 @@
 // @supportURL          https://github.com/h2y/link-fix
 // @license             GPL-3.0
 // @icon                https://pic1.zhimg.com/2e33f063f1bd9221df967219167b5de0_m.jpg
+// @updateURL           https://github.com/h2y/link-fix/raw/master/zhihu_link_fix/zhihu_link_fix.user.js
 
 // @grant               none
-// @run-at              document_end
+// @run-at              document-end
 // @include             *.zhihu.com/*
 
 // @date                06/10/2016

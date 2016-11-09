@@ -12,9 +12,10 @@
 // @supportURL          https://github.com/h2y/link-fix
 // @license             GPL-3.0
 // @icon                https://p.ssl.qhimg.com/t011a6c04685b5d3b80.png
+// @updateURL           https://github.com/h2y/link-fix/raw/master/360so_link_fix/360so_link_fix.user.js
 
 // @grant               none
-// @run-at              document_end
+// @run-at              document-end
 // @include             https://www.so.com/s?*
 
 // @date                06/09/2016
