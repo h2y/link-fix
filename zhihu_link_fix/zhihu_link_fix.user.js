@@ -15,35 +15,17 @@
 // @updateURL           https://github.com/h2y/link-fix/raw/master/zhihu_link_fix/zhihu_link_fix.user.js
 
 // @grant               none
-// @run-at              document-end
-// @include             *.zhihu.com/*
+// @run-at              document-start
+// @include             *//link.zhihu.com/*
 
 // @date                06/10/2016
-// @modified            08/07/2016
-// @version             1.1.1.3
+// @modified            11/12/2016
+// @version             1.2.0.4
 // ==/UserScript==
 
 
-if(location.host==='link.zhihu.com') {
-    var old = location.search.match(/target=(.+?)(&|$)/);
-    if(old && old.length>=2)
-        location.href = decodeURIComponent(old[1]);
-}
-else
-    document.body.addEventListener('click', function(e){
-        var dom = e.target,
-            max_times = 3;
-        while(dom && max_times--) {
-            if(dom.nodeName.toUpperCase()==='A') {
-                var old = dom.href;
-                if( old && old.indexOf('//link.zhihu.com/?')>=0 ) {
-                    old = old.match(/target=(.+?)(&|$)/);
-                    if(old && old.length>=2)
-                        dom.href = decodeURIComponent(old[1]);
-                }
-                return;
-            }
-            else
-                dom = dom.parentNode;
-        }
-    });
+!function(){
+    var get = location.search.match(/target=(.+?)(&|$)/);
+    if(get && get.length>=2)
+        location.href = decodeURIComponent(get[1]);
+}();
