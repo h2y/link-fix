@@ -1,8 +1,10 @@
 // ==UserScript==
-// @name                HTML cliper@
-// @@description         HTML cliper
-// @@description:zh-CN   HTML cliper
-// @@description:zh-TW   HTML cliper
+// @name                read mode
+// @name:zh-CN          阅读模式
+// @name:zh-TW          阅读模式
+// @description         HTML cliper
+// @description:zh-CN   HTML cliper
+// @description:zh-TW   HTML cliper
 
 // @authuer             Moshel
 // @namespace           https://hzy.pw
@@ -13,7 +15,7 @@
 // @updateURL           https://github.com/h2y/link-fix/raw/master/read_mode/read_mode.user.js
 
 // @include             *
-// @grant               Moshels
+// @grant               GM_setClipboard
 // @run-at              context-menu
 // @require             https://cdn.staticfile.org/keymaster/1.6.1/keymaster.min.js
 
@@ -106,8 +108,8 @@ function enterCliping(e) {
     if(!styleNode) {
         styleNode = document.createElement('style');
         styleNode.innerHTML = `.cliper-top-node {
-            box-shadow: 0 0 20px #777;
-            border:     3px solid red;
+            box-shadow: 0 0 20px #777 !important;
+            border:     3px solid red !important;
         } .read-mode-reading {
             position:   fixed   !important;
             z-index:    999970  !important;
@@ -115,19 +117,30 @@ function enterCliping(e) {
             left:       0       !important;
             width:      100%    !important;
             height:     100%    !important;
-            background-color: white     !important;
-            overflow:         scroll    !important;
-            padding:          1rem 3rem !important;
-            border:           0         !important;
-            margin:           0         !important;
+            background-color: white   !important;
+            overflow:         scroll  !important;
+            padding:          0       !important;
+            border:           0       !important;
+            margin:           0       !important;
         } .read-mode-buts {
             position:   fixed;
             z-index:    999985;
-            top: 1rem;  right: 1rem;
+            top: 2rem;  right: 1rem;
         } .read-mode-button {
             width:      54px;
             height:     54px;
-            margin:     0 1rem;
+            margin:     0 .5rem;
+            padding:    10px 15px;
+            color:      #fff;
+            opacity:    .5;
+            transition: 500ms;
+            border-radius:      5px;
+            background-color:   black;
+        } .read-mode-button:hover {
+            background-color:   white;
+            border-radius:      0;
+            box-shadow:         0 0 10px #000;
+            color:              #000;
         }`;
         styleNode.id = 'read_mode';
         document.body.appendChild(styleNode);
@@ -140,7 +153,7 @@ function enterCliping(e) {
     do {
         preNode = topNode;
         onDown(e);
-    }while(preNode!=topNode && preNode.clientHeight*0.8 < topNode.clientHeight);
+    }while(preNode!=topNode && preNode.clientHeight*0.9 < topNode.clientHeight);
 }
 
 function quitCliping(e) {
@@ -166,28 +179,28 @@ function buildButNodes() {
         {
             text:    "Exit read mode",
             handler: quitCliping,
-            icon:    'https://github.com/h2y/link-fix/raw/master/read_mode/icons/277-exit.svg'
+            icon:    'x'
         }, {
             text:    "Enlarge",
             handler: onEnlarge,
-            icon:    'https://github.com/h2y/link-fix/raw/master/read_mode/icons/136-zoom-in.svg'
+            icon:    '+'
         }, {
             text:    "Shrink",
             handler: onShrink,
-            icon:    'https://github.com/h2y/link-fix/raw/master/read_mode/icons/137-zoom-out.svg'
+            icon:    '-'
         }, {
             text:    "Save HTML data",
             handler: onSaveHTML,
-            icon:    'https://github.com/h2y/link-fix/raw/master/read_mode/icons/097-download.svg'
+            icon:    '↓'
         }
     ];
 
     for(let but of buts) {
         let newBut = document.createElement('a');
         newBut.className = 'read-mode-button';
-        newBut.innerHTML = `<img src="${but.icon}">`;
-        newBut.title = but.text;
-        newBut.onClick = but.handler;
+        newBut.innerHTML = but.icon;
+        newBut.title     = but.text;
+        newBut.onclick   = but.handler;
         butNodes.appendChild(newBut);
     }
 
@@ -233,7 +246,30 @@ function onShrink(e) {
 
 
 function onSaveHTML(e) {
+    let htmlStr = '';
 
+    let styleNodes = document.querySelectorAll('style, link[rel=stylesheet]');
+    for(let node of styleNodes) {
+        if(node.id == 'read_mode')
+            continue;
+
+        if(node.nodeName=="LINK")
+            htmlStr += `<link rel="stylesheet" href="${node.href}">`;
+        else
+            htmlStr += node.outerHTML;
+    }
+
+    topNode.style.zoom = '';
+
+    //TODO: node filter
+    htmlStr += topNode.outerHTML
+        .replace(/<style[^>]*>.*?<\/style>/ig, '')
+        .replace(/<script[^>]*>.*?<\/script>/ig, '');
+
+    window.GM_setClipboard(htmlStr);
+
+    topNode.style.zoom = zoomLevel;
+    alert('Copied into clipboard.');
 }
 
 

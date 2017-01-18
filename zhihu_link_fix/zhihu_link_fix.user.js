@@ -16,16 +16,34 @@
 
 // @grant               none
 // @run-at              document-start
-// @include             *//link.zhihu.com/*
+// @include             *.zhihu.com/*
 
 // @date                06/10/2016
-// @modified            11/12/2016
-// @version             1.2.0.4
+// @modified            01/18/2017
+// @version             1.3.0.5
 // ==/UserScript==
 
 
-!function(){
-    var get = location.search.match(/target=(.+?)(&|$)/);
-    if(get && get.length>=2)
-        location.href = decodeURIComponent(get[1]);
-}();
+if(location.host==='link.zhihu.com') {
+    let old = location.search.match(/target=(.+?)(&|$)/);
+    if(old && old.length>=2)
+        location.href = decodeURIComponent(old[1]);
+}
+else
+    document.body.addEventListener('click', function(e){
+        let dom = e.target,
+            max_times = 3;
+        while(dom && max_times--) {
+            if(dom.nodeName.toUpperCase()==='A') {
+                let old = dom.href;
+                if( old && old.indexOf('//link.zhihu.com/?')>=0 ) {
+                    old = old.match(/target=(.+?)(&|$)/);
+                    if(old && old.length>=2)
+                        dom.href = decodeURIComponent(old[1]);
+                }
+                return;
+            }
+            else
+                dom = dom.parentNode;
+        }
+    });
