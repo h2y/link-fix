@@ -1,26 +1,26 @@
 // ==UserScript==
-// @name                read mode
-// @name:zh-CN          阅读模式
-// @name:zh-TW          阅读模式
-// @description         HTML cliper
-// @description:zh-CN   HTML cliper
-// @description:zh-TW   HTML cliper
+// @name                Page Read Mode
+// @name:zh-CN          网页阅读模式
+// @name:zh-TW          網頁閱讀模式
+// @description         Content reader on any page, selecting the text area automatically or manually.
+// @description:zh-CN   在任何需要的页面中开启阅读模式，自动或手动选择正文区域。
+// @description:zh-TW   在任何需要的頁面中開啟閱讀模式，自動或手動選擇正文區域。
 
 // @authuer             Moshel
 // @namespace           https://hzy.pw
 // @@homepageURL         https://hzy.pw/p/1364
 // @supportURL          https://github.com/h2y/link-fix
-// @@icon                https://hzy.pw/wp-content/uploads/2015/08/i-300x300.jpg
+// @icon                https://wiki.greasespot.net/images/f/f3/Book.png
 // @license             GPL-3.0
 // @updateURL           https://github.com/h2y/link-fix/raw/master/read_mode/read_mode.user.js
 
 // @include             *
 // @grant               GM_setClipboard
-// @run-at              context-menu
+// @@run-at              context-menu
 // @require             https://cdn.staticfile.org/keymaster/1.6.1/keymaster.min.js
 
 // @date                12/17/2015
-// @modified            12/20/2015
+// @modified            01/20/2016
 // @version             1.0.0
 // ==/UserScript==
 
@@ -385,8 +385,14 @@ function onEnter(e) {
 /*
     Main
  */
-if(mode)      quitCliping(new MouseEvent("main"));
-else         enterCliping(new MouseEvent("main"));
+console.log(window.key);
+window.key('alt+r', function(){
+	console.log('reading');
+	if(mode)      
+		quitCliping(new MouseEvent("main"));
+	else         
+		enterCliping(new MouseEvent("main"));	
+});
 
 
 /*
