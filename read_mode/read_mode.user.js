@@ -2,13 +2,13 @@
 // @name                Page Read Mode
 // @name:zh-CN          网页阅读模式
 // @name:zh-TW          網頁閱讀模式
-// @description         Content reader on any page, selecting the text area automatically or manually.
-// @description:zh-CN   在任何需要的页面中开启阅读模式，自动或手动选择正文区域。
-// @description:zh-TW   在任何需要的頁面中開啟閱讀模式，自動或手動選擇正文區域。
+// @description         [ALT+R] Content reader on any page, selecting the text area automatically or manually.
+// @description:zh-CN   [ALT+R] 在任何需要的页面中开启阅读模式，自动或手动选择正文区域。
+// @description:zh-TW   [ALT+R] 在任何需要的頁面中開啟閱讀模式，自動或手動選擇正文區域。
 
 // @authuer             Moshel
 // @namespace           https://hzy.pw
-// @@homepageURL         https://hzy.pw/p/1364
+// @homepageURL         https://greasyfork.org/zh-CN/scripts/26709
 // @supportURL          https://github.com/h2y/link-fix
 // @icon                https://wiki.greasespot.net/images/f/f3/Book.png
 // @license             GPL-3.0
@@ -16,12 +16,13 @@
 
 // @include             *
 // @grant               GM_setClipboard
-// @@run-at              context-menu
+// *run-at              context-menu
 // @require             https://cdn.staticfile.org/keymaster/1.6.1/keymaster.min.js
+// @resource            useageIMG https://github.com/h2y/link-fix/raw/master/read_mode/useage.png
 
 // @date                12/17/2015
 // @modified            01/20/2016
-// @version             1.0.0
+// @version             1.1.0
 // ==/UserScript==
 
 
@@ -32,7 +33,7 @@ let mode = 0,        //状态标记
     topNode = null,  //顶层节点
     styleNode = null,
     butNodes = null,
-    zoomLevel = 1;
+    useageNode = null;
 
 
 /*
@@ -51,52 +52,6 @@ function isNodeShow(node) {
 }
 
 
-function nodeStyleInline(node) {
-    let styleStr = '',
-        styles = window.getComputedStyle(node);
-
-    let keys = Object.keys(styles);
-    for(let key of keys) {
-        //if(key==='cssText')     continue;
-        //if(parseInt(key)==key)  continue;
-        /*if(/^(webkit|moz|ms)/.test(key))
-            continue;
-
-        if(styles[key]=='')     continue;*/
-
-        let value = styles[key];
-        key = changeStrStyle(key.replace('webkit','-webkit'));
-
-        styleStr += key + ':' + value + ';';
-    }
-
-    node.className = '';
-    node.id = '';
-    node.style = styleStr;
-
-    //child
-    if(node.childElementCount)
-        for(let child of node.children)
-            nodeStyleInline(child);
-}
-
-
-// textAlign -> text-align
-function changeStrStyle(str) {
-    let chars = str.split('');
-
-    for(let i=chars.length-1; i>=0; i--) {
-        let ascii = chars[i].charCodeAt(0);
-        if(ascii>=65 && ascii<91) {
-            //A-Z
-            chars[i] = '-' + String.fromCharCode(ascii+32);
-        }
-    }
-
-    return chars.join('');
-}
-
-
 /*
     main functions
  */
@@ -112,19 +67,19 @@ function enterCliping(e) {
             border:     3px solid red !important;
         } .read-mode-reading {
             position:   fixed   !important;
-            z-index:    999970  !important;
+            z-index:    9999970 !important;
             top:        0       !important;
             left:       0       !important;
-            width:      100%    !important;
             height:     100%    !important;
+            width: calc(100%-30px)    !important;
             background-color: white   !important;
             overflow:         scroll  !important;
-            padding:          0       !important;
+            padding:          30px    !important;
             border:           0       !important;
             margin:           0       !important;
         } .read-mode-buts {
             position:   fixed;
-            z-index:    999985;
+            z-index:    9999985;
             top: 2rem;  right: 1rem;
         } .read-mode-button {
             width:      54px;
@@ -141,10 +96,26 @@ function enterCliping(e) {
             border-radius:      0;
             box-shadow:         0 0 10px #000;
             color:              #000;
+        } img.read-mode-useage {
+            position:   fixed;
+            right:      3rem;
+            bottom:     2rem;
+            z-index:    9999975;
+            opacity:    .7;
         }`;
-        styleNode.id = 'read_mode';
+        //styleNode.id = 'read_mode';
         document.body.appendChild(styleNode);
     }
+
+    // useage image
+    if(!useageNode) {
+        useageNode = document.createElement('img');
+        useageNode.src = 'https://github.com/h2y/link-fix/raw/master/read_mode/useage.png';
+        useageNode.className = 'read-mode-useage';
+        document.body.appendChild(useageNode);
+    }
+
+    useageNode.style.display = '';
 
     //choose the init node
     topNode = document.body;
@@ -160,7 +131,7 @@ function quitCliping(e) {
     mode = 0;
     e.preventDefault();
 
-    topNode.style.zoom = '';
+    useageNode.style.display = 'none';
 
     changeTopNode(null);
 
@@ -180,14 +151,6 @@ function buildButNodes() {
             text:    "Exit read mode",
             handler: quitCliping,
             icon:    'x'
-        }, {
-            text:    "Enlarge",
-            handler: onEnlarge,
-            icon:    '+'
-        }, {
-            text:    "Shrink",
-            handler: onShrink,
-            icon:    '-'
         }, {
             text:    "Save HTML data",
             handler: onSaveHTML,
@@ -224,51 +187,31 @@ function changeTopNode(newNode) {
         winY = window.scrollY,
         domH = topNode.clientHeight,
         domY = topNode.getBoundingClientRect().top + winY;
+    //console.log(winH,winY,domH,domY);
 
     if(domH>winH)
-        document.body.scrollTop = domY - 50;
+        window.scrollTo(0, domY - 50 );
     else
-        document.body.scrollTop = domY - (winH-domH)/2;
+        window.scrollTo(0, domY - (winH-domH)/2 );
 }
 
 
 /*
     Event handler
  */
-function onEnlarge(e) {
-    zoomLevel += .1;
-    topNode.style.zoom = zoomLevel;
-}
-function onShrink(e) {
-   zoomLevel -= .1;
-   topNode.style.zoom = zoomLevel;
-}
-
-
 function onSaveHTML(e) {
     let htmlStr = '';
 
-    let styleNodes = document.querySelectorAll('style, link[rel=stylesheet]');
-    for(let node of styleNodes) {
-        if(node.id == 'read_mode')
-            continue;
+    htmlStr += topNode.outerHTML.split('\n').join('')
+                    .replace(/(id|class)=(\'.*?\'|\".*?\")/ig, '')
+                    .replace(/<!--.*?-->/g, '')
+                    .replace(/>[\t ]+?</g, '><')
+                    .replace(/<(link|meta).*?>/ig, '')
+                    .replace(/<style.*?>.*?<\/style>/ig, '')
+                    .replace(/<script.*?>.*?<\/script>/ig, '');
 
-        if(node.nodeName=="LINK")
-            htmlStr += `<link rel="stylesheet" href="${node.href}">`;
-        else
-            htmlStr += node.outerHTML;
-    }
+    GM_setClipboard(htmlStr);
 
-    topNode.style.zoom = '';
-
-    //TODO: node filter
-    htmlStr += topNode.outerHTML
-        .replace(/<style[^>]*>.*?<\/style>/ig, '')
-        .replace(/<script[^>]*>.*?<\/script>/ig, '');
-
-    window.GM_setClipboard(htmlStr);
-
-    topNode.style.zoom = zoomLevel;
     alert('Copied into clipboard.');
 }
 
@@ -371,9 +314,6 @@ function onEnter(e) {
 
     topNode.classList.add('read-mode-reading');
 
-    topNode.style.zoom = 1.2;
-    zoomLevel = 1.2;
-
     //buttons
     if(butNodes)
         butNodes.style.display = '';
@@ -385,23 +325,21 @@ function onEnter(e) {
 /*
     Main
  */
-console.log(window.key);
-window.key('alt+r', function(){
-	console.log('reading');
-	if(mode)      
+key('alt+r', function(){
+	if(mode)
 		quitCliping(new MouseEvent("main"));
-	else         
-		enterCliping(new MouseEvent("main"));	
+	else
+		enterCliping(new MouseEvent("main"));
 });
 
 
 /*
     bind action
  */
-window.key('up', onUp);
-window.key('down', onDown);
-window.key('left', onLeft);
-window.key('right', onRight);
+key('up',    onUp);
+key('down',  onDown);
+key('left',  onLeft);
+key('right', onRight);
 
-window.key('enter', onEnter);
-window.key('esc', quitCliping);
+key('enter', onEnter);
+key('esc',   quitCliping);

@@ -1,0 +1,17 @@
+{
+    "extends": "eslint:recommended",
+    "env": {
+        "browser": true,
+        "greasemonkey": true,
+        "jquery": true,
+        "es6": true
+    },
+    "globals": {
+        "key": true //read_mode
+    },
+    "rules": {
+        "semi": [1, "always"],
+        "no-unused-vars" : 0,
+        "no-console": 0
+    }
+}
