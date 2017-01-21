@@ -21,8 +21,8 @@
 // @resource            useageIMG https://github.com/h2y/link-fix/raw/master/read_mode/useage.png
 
 // @date                12/17/2015
-// @modified            01/20/2016
-// @version             1.1.0
+// @modified            01/21/2016
+// @version             1.1.1
 // ==/UserScript==
 
 
@@ -71,6 +71,7 @@ function enterCliping(e) {
             top:        0       !important;
             left:       0       !important;
             height:     100%    !important;
+            width: 		100%    !important;
             width: calc(100%-30px)    !important;
             background-color: white   !important;
             overflow:         scroll  !important;
@@ -150,11 +151,11 @@ function buildButNodes() {
         {
             text:    "Exit read mode",
             handler: quitCliping,
-            icon:    'x'
+            icon:    '✘'
         }, {
             text:    "Save HTML data",
             handler: onSaveHTML,
-            icon:    '↓'
+            icon:    '❖'
         }
     ];
 
