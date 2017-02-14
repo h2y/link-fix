@@ -4,6 +4,14 @@
 
 如果你不知道浏览器脚本是什么，我的这篇文章会给与你帮助：[<使用UserScript加强你的浏览器>](https://hzy.pw/p/1872)，一定会让你受益匪浅。
 
+## /mdn_cn
+
+**MDN 首选中文**
+
+在 [developer.mozilla.org](https://developer.mozilla.org/zh-CN/) 阅读文档时，自动首选中文版本，避免手动切换。
+
+**Greasyfork 在线安装: <https://greasyfork.org/zh-CN/scripts/27384>**
+
 ## /read_mode
 
 **网页阅读模式**
