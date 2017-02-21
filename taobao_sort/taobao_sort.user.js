@@ -6,7 +6,7 @@
 // @description:zh-CN   在淘宝天猫浏览商品时，自动为你首选 [按销量排序]。方便实用！
 // @description:zh-TW   在淘寶天貓瀏覽商品時，自動為妳首選 [按銷量排序]。方便實用！
 
-// @authuer             Moshel
+// @author              Moshel
 // @namespace           https://hzy.pw
 // @homepageURL         https://hzy.pw/p/1364
 // @supportURL          https://github.com/h2y/link-fix

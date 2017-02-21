@@ -2,7 +2,7 @@
 // @name                MDN 首选中文
 // @description         在 developer.mozilla.org 阅读文档时，自动首选中文版本，避免手动切换。
 
-// @authuer             Moshel
+// @author              Moshel
 // @namespace           https://hzy.pw
 // @homepageURL         https://hzy.pw/
 // @supportURL          https://github.com/h2y/link-fix
@@ -14,8 +14,8 @@
 // @grant               none
 // @run-at              document-start
 
-// @version             1.0.0
-// @modified            02/14/2017
+// @version             1.0.1
+// @modified            02/21/2017
 // ==/UserScript==
 
 
@@ -31,28 +31,26 @@ const allowLang = 'zh-CN',
     then
         nowPath = 'Apps/Design/Planning_your_app';
 */
-let splitRet = location.pathname.split(nowLang+'/', 2);
-if(splitRet.length!==2)
-    return 'bad location :(';
 
-const nowPath = splitRet[1];
-
-
+//check conditions
 if(document.referrer) {
-    //check conditions
+    let splitRet = location.pathname.split(nowLang+'/', 2);
+    if(splitRet.length!==2)
+        return 'bad location :(';
+    const nowPath = splitRet[1];
+
     let regRet = document.referrer.match(/mozilla\.org\/(.+?)\/(.*)$/);
-    if(regRet.length!==3)
-        return 'bad referrer :(';
+    if(regRet.length==3) {
+        let lastLang = regRet[1],
+            lastPath = regRet[2];
 
-    let lastLang = regRet[1],
-        lastPath = regRet[2];
-
-    if(lastPath==nowPath)
-        return 'user choose the English version manually.';
+        if(lastPath==nowPath)
+            return 'user choose the English version manually.';
+    }
 }
 
 
-location.href = location.href.replace(nowLang, allowLang);
+location.pathname = location.pathname.replace(nowLang, allowLang);
 
 
 }();

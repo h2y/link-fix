@@ -6,9 +6,9 @@
 // @description:zh-CN   [ALT+R] 将任何一个网页中影响您阅读的图片，视频，广告等无关内容过滤，仅查看最关注的那一部分内容。特别适合各种内容阅读型网页。同时提供将所选区域的 HTML 代码导出的功能。
 // @description:zh-TW   [ALT+R] 將任何一個網頁中影響您閱讀的圖片，視頻，廣告等無關內容過濾，僅查看最關注的那一部分內容。特別適合各種內容閱讀型網頁。同時提供將所選區域的 HTML 代碼導出的功能。
 
-// @authuer             Moshel
+// @author              Moshel
 // @namespace           https://hzy.pw
-// @homepageURL         https://greasyfork.org/zh-CN/scripts/26709
+// @homepageURL         https://hzy.pw/
 // @supportURL          https://github.com/h2y/link-fix
 // @icon                https://wiki.greasespot.net/images/f/f3/Book.png
 // @license             GPL-3.0

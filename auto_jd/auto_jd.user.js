@@ -6,7 +6,7 @@
 // @description:zh-CN   在京东浏览商品时，可选择自动为你勾选 [京东配送]、[仅显示有货]、[销量排序]。方便实用！
 // @description:zh-TW   在京東瀏覽商品時，可選擇自動為你勾選 [京東配送]、[僅顯示有貨]、[銷量排序]。方便實用！
 
-// @authuer             Moshel
+// @author              Moshel
 // @namespace           https://hzy.pw
 // @homepageURL         https://hzy.pw/p/1349
 // @supportURL          https://github.com/h2y/link-fix
