@@ -30,7 +30,7 @@ if(location.host==='link.zhihu.com') {
         location.href = decodeURIComponent(regRet[1]);
 }
 else
-    document.body.addEventListener('click', function(e){
+    window.addEventListener('click', function(e){
         let dom = e.target,
             max_times = 3;
         while(dom && max_times--) {
