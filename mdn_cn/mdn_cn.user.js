@@ -6,7 +6,7 @@
 // @namespace           https://hzy.pw
 // @homepageURL         https://hzy.pw/
 // @supportURL          https://github.com/h2y/link-fix
-// @icon                http://blog.mozilla.com.tw/wp-content/uploads/mdn_logo_only_color.png
+// @icon                https://blog.mozilla.com.tw/wp-content/uploads/mdn_logo_only_color.png
 // @license             GPL-3.0
 // @updateURL           https://github.com/h2y/link-fix/raw/master/mdn_cn/mdn_cn.user.js
 
