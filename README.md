@@ -4,6 +4,21 @@
 
 如果你不知道浏览器脚本是什么，我的这篇文章会给与你帮助：[<使用UserScript加强你的浏览器>](https://hzy.pw/p/1872)，一定会让你受益匪浅。
 
+
+## /wallhaven
+
+**Wallhaven 壁纸网站增强**
+
+这是一个高质量的壁纸网站，本脚本增强了其使用体验，目前的功能如下：
+
+1. 列表中淡化 star 数小于 10 的壁纸，让你更加关注于优秀的资源。
+2. 在列表中为每张壁纸添加一个 \[一键保存\] 的按钮。
+
+**网站效果预览：<https://alpha.wallhaven.cc/search?purity=110&sorting=random>**
+
+**Greasyfork 在线安装: <https://greasyfork.org/zh-CN/scripts/27384>**
+
+
 ## /mdn_cn
 
 **MDN 首选中文**
