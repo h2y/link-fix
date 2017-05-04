@@ -14,8 +14,8 @@
 // @grant               none
 // @run-at              document-start
 
-// @version             1.0.1
-// @modified            02/21/2017
+// @version             1.0.2
+// @modified            05/03/2017
 // ==/UserScript==
 
 
@@ -26,17 +26,12 @@
 const allowLang = 'zh-CN',
       nowLang   = 'en-US';
 
-/*
-    https://developer.mozilla.org/zh-CN/Apps/Design/Planning_your_app
-    then
-        nowPath = 'Apps/Design/Planning_your_app';
-*/
 
 //check conditions
 if(document.referrer) {
     let splitRet = location.pathname.split(nowLang+'/', 2);
     if(splitRet.length!==2)
-        return 'bad location :(';
+        return; // unknown location 
     const nowPath = splitRet[1];
 
     let regRet = document.referrer.match(/mozilla\.org\/(.+?)\/(.*)$/);
@@ -45,7 +40,7 @@ if(document.referrer) {
             lastPath = regRet[2];
 
         if(lastPath==nowPath)
-            return 'user choose the English version manually.';
+            return; // user choose the English version manually
     }
 }
 

@@ -5,6 +5,17 @@
 如果你不知道浏览器脚本是什么，我的这篇文章会给与你帮助：[<使用UserScript加强你的浏览器>](https://hzy.pw/p/1872)，一定会让你受益匪浅。
 
 
+# /soTab
+
+**搜索引擎一键切换 soTab**
+
+在常用的搜索引擎页面中添加互相切换的按钮，包括图片、视频、知道、学术搜索。
+
+虽然同类脚本这不是第一款，但这是最省资源的一款。之前有幸使用过其他类似的脚本，太重，启用后全网监控，每个网页都要固定注入一大段 JS/CSS，看着都难受，于是索性自己写了重新写了个轻量级的。
+
+**Greasyfork 在线安装: <https://greasyfork.org/zh-CN/scripts/14856>**
+
+
 ## /wallhaven
 
 **Wallhaven 壁纸网站增强**
@@ -16,7 +27,7 @@
 
 **网站效果预览：<https://alpha.wallhaven.cc/search?purity=110&sorting=random>**
 
-**Greasyfork 在线安装: <https://greasyfork.org/zh-CN/scripts/27384>**
+**Greasyfork 在线安装: <https://greasyfork.org/zh-CN/scripts/29444>**
 
 
 ## /mdn_cn
@@ -27,6 +38,7 @@
 
 **Greasyfork 在线安装: <https://greasyfork.org/zh-CN/scripts/27384>**
 
+
 ## /read_mode
 
 **网页阅读模式**
@@ -35,6 +47,7 @@
 
 **Greasyfork 在线安装: <https://greasyfork.org/zh-CN/scripts/26709>**
 
+
 ## /taobao_sort
 
 **淘宝销量排序**
@@ -42,6 +55,7 @@
 在淘宝天猫浏览商品时，自动为你首选 [按销量排序]，避免被潜在的竞价排名误伤。
 
 **Greasyfork 在线安装: <https://greasyfork.org/zh-CN/scripts/14505>**
+
 
 ## /auto_jd
 
@@ -91,5 +105,4 @@
 
 - AC-Baidu：绕过百度重定向直接访问网页：<https://greasyfork.org/zh-CN/scripts/14178>
 - Google：绕过搜索结果网页链接重定向：<https://greasyfork.org/zh-CN/scripts/14150>
-- soTab：搜索引擎一键切换：<https://greasyfork.org/zh-CN/scripts/14856>
 - 自动在中英文之间加上个空格：<https://greasyfork.org/zh-CN/scripts/2185>

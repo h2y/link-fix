@@ -1,0 +1,33 @@
+.soTab {
+  position: fixed;
+  background-color: #000;
+  opacity: 0.3;
+  border-radius: 40px;
+  color: #fff;
+  padding: 15px 20px;
+  bottom: 100px;
+  height: 40px;
+  left: -320px;
+  width: 300px;
+  z-index: 9999999;
+  transition: all 400ms;
+}
+.soTab:hover {
+    left: 5px;
+    opacity: 1;
+    border-radius: 10px;
+    box-shadow: 5px -5px 10px #777;
+}
+
+.soTab p {
+    margin: 0;
+}
+p.soTab_title {
+  font-weight: bold;
+  margin-bottom: 3px;
+}
+
+.soTab a {
+  color: #0cf;
+  margin-right: 1rem;
+}
