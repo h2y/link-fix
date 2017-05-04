@@ -6,7 +6,6 @@
 // @description:zh-CN   在常用的搜索引擎页面中添加互相切换的按钮，包括图片、视频、知道、学术搜索。
 // @description:zh-TW   在常用的搜索引擎頁面中添加互相切換的按鈕，包括圖片、視頻、知道、學術搜索。
 
-
 // @author              Moshel
 // @namespace           http://hzy.pw
 // @homepageURL         http://hzy.pw/p/1849
@@ -27,12 +26,16 @@
 // @run-at              document_end
 
 // @date                10/30/2015
-// @modified            08/17/2016
-// @version             1.3.4.12
+// @modified            05/04/2017
+// @version             1.4.0.13
 // ==/UserScript==
 
 
-var href0 = "";
+{
+
+
+let href0 = "";
+
 ! function ajax_fixer() {
     var href = location.href;
     if (href0 != href) {
@@ -48,7 +51,6 @@ var href0 = "";
 
 
 function soTab_init() {
-    //console.log("soTab开始加载");
 
     if (top != window) {
         console.log("soTab! not top window");
@@ -56,8 +58,8 @@ function soTab_init() {
     }
 
     //判断搜索引擎，将仅使用hostname适配
-    var site = ["baidu", "bing", "so.com", "", "zhihu", "google", "", "soku", "sogou"],
-        siteName = ["百度", "必应", "好搜", "ALLSO", "知乎", "谷歌", "清澄漫语", "搜库", "搜狗"],
+    var site = ["baidu", "bing", "so.com", "", "zhihu", "google", "soku", "sogou"],
+        siteName = ["百度", "必应", "好搜", "ALLSO", "知乎", "谷歌", "搜库", "搜狗"],
         siteID = -1;
     for (var i = 0; i < site.length; i++) {
         if (site[i] && location.hostname.indexOf(site[i]) >= 0) {
@@ -88,10 +90,10 @@ function soTab_init() {
         case 5: //google
             kind = ["", "tbm=isch", "", "tbm=vid", "scholar.google"];
             break;
-        case 7:
+        case 6:
             //kind[3] = "soku";
             break;
-        case 8: //sogou
+        case 7: //sogou
             kind = [ ["/web?", "/sogou?", "weixin.sogou", "english.sogou"],
                 "pic.sogou",
                 ["interation=196636", "mingyi.sogou", "wenwen.sogou", ".com/zhihu"],
@@ -132,7 +134,7 @@ function soTab_init() {
     //console.log("soTab loaded: " + siteID + "." + kindID);
 
     //初始化搜索路径
-    //"百度", "必应", "好搜", "ALLSO", "知乎", "谷歌", "清澄漫语", "搜库", "搜狗"
+    //"百度", "必应", "好搜", "ALLSO", "知乎", "谷歌", "搜库", "搜狗"
     var link = []; //link[siteID]
     if (kindID == 0) { //normal
         link = ["https://www.baidu.com/s?wd=",
@@ -141,7 +143,7 @@ function soTab_init() {
             "http://h2y.github.io/allso/#",
             "",
             "https://www.google.com/search?q=",
-            "", "",
+            "", 
             "https://www.sogou.com/web?query="
         ];
     } else if (kindID == 1) { //pic
@@ -156,7 +158,7 @@ function soTab_init() {
             "https://cn.bing.com/knows/search?q=",
             "", "",
             "https://www.zhihu.com/search?q=",
-            "", "", "",
+            "", "", 
             "http://www.sogou.com/sogou?interation=196636&query="
         ];
     } else if (kindID == 3) { //video
@@ -165,7 +167,6 @@ function soTab_init() {
             "https://video.so.com/v?q=",
             "", "",
             "https://www.google.com/search?tbm=vid&q=",
-            "https://hzy.pw/dm/?s=",
             "https://www.soku.com/v?keyword="
         ];
     } else if (kindID == 4) { //xueshu
@@ -180,9 +181,9 @@ function soTab_init() {
     var key;
     if (siteID == 0)
         key = (location.search.indexOf("wd=") >= 0) ? "wd" : "word";
-    /*else if (siteID == 7)
+    /*else if (siteID == 6)
         key = "keyword";*/
-    else if (siteID == 8)
+    else if (siteID == 7)
         key = (location.search.indexOf("query=") >= 0) ? "query" : 'w';
     else
         key = "q";
@@ -194,8 +195,6 @@ function soTab_init() {
     var tmp2 = tmp[1];
     tmp = tmp2.split("&", 2);
     key = tmp[0];
-
-    //console.log(key);
 
     //加载css
     var dom = document.createElement('style'),
@@ -216,6 +215,7 @@ function soTab_init() {
     dom.className = "soTab soTab_site" + siteID + " soTab_kind" + kindID;
     dom_body.appendChild(dom);
 
-    //console.log("soTab all run!");
-
 }
+
+
+} //end userScript
