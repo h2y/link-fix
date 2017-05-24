@@ -12,14 +12,13 @@
 // @license             GPL-3.0
 // @updateURL           https://github.com/h2y/link-fix/raw/master/wallhaven/wallhaven.user.js
 
-// @include             https://alpha.wallhaven.cc/search?*
-// @include             https://alpha.wallhaven.cc/latest
+// @include             https://alpha.wallhaven.cc/*
 // @grant               none
 // @run-at              document-end
 
 // @date                05/02/2017
-// @modified            05/03/2017
-// @version             1.0.0
+// @modified            05/24/2017
+// @version             1.0.1
 // ==/UserScript==
 
 
@@ -42,7 +41,7 @@
     
     main();
     function main() {
-        const $pages = $('#thumbs > section');
+        const $pages = $('#thumbs > section, #tag-thumbs');
         if($pages.length != scanedPages) {
             scanPics( $pages[scanedPages++] );
         }
