@@ -5,6 +5,15 @@
 如果你不知道浏览器脚本是什么，我的这篇文章会给与你帮助：[<使用UserScript加强你的浏览器>](https://hzy.pw/p/1872)，一定会让你受益匪浅。
 
 
+## /google_interstitial_link_fix
+
+**跳过谷歌网页风险提醒**
+
+在谷歌搜索中，点击链接后常常会显示“警告 - 访问此网站可能会损害您的计算机！”的[页面](https://www.google.com/interstitial?url=http://bbs.tgbus.com/)，往往我们都是选择离开。但问题是这个页面并不给我们继续访问的选择，我们只能复制链接到地址栏才能打开想要看的页面。而这个脚本为你添加了一键继续访问的按钮。
+
+**Greasyfork 在线安装: <https://greasyfork.org/zh-CN/scripts/37951>**
+
+
 ## /space_king
 
 **空格之王 自动为中英文之间添加一个空格**
@@ -103,7 +112,7 @@
 
 我编写的所有 UserScript 开源在 Github 中，地址：<https://github.com/h2y/link-fix>
 
-欢迎大家来看看我的更多精彩的脚本，或者提出你宝贵的建议，喜欢请 star :D
+欢迎大家来看看[我的更多精彩的脚本](https://github.com/h2y/link-fix/#readme)，提出你宝贵的建议，喜欢请 star :D
 
 意见反馈请使用 Github，更方便我看到和处理：<https://github.com/h2y/link-fix/issues>
 
