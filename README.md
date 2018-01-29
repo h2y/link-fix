@@ -5,6 +5,15 @@
 如果你不知道浏览器脚本是什么，我的这篇文章会给与你帮助：[<使用UserScript加强你的浏览器>](https://hzy.pw/p/1872)，一定会让你受益匪浅。
 
 
+## /space_king
+
+**空格之王 自动为中英文之间添加一个空格**
+
+如果你跟我一样，每次看到网页上的中文字和英文、数字、符号挤在一块，就会坐立难安，忍不住想在它们之间加个空格。这个脚本正是你在网路世界走跳所需要的东西，它会自动替你在网页中所有的中文字和半形的英文、数字、符号之间插入空白。
+
+**Greasyfork 在线安装: <https://greasyfork.org/zh-CN/scripts/37950>**
+
+
 ## /soTab
 
 **搜索引擎一键切换 soTab**
@@ -103,6 +112,9 @@
 
 ## 其他优秀的脚本推荐
 
+写在这里，不仅方便路过的各位找到更多实用脚本。也是我作为用户对这些作者们提供的优秀作品表示的由衷感谢。
+
 - AC-Baidu：绕过百度重定向直接访问网页：<https://greasyfork.org/zh-CN/scripts/14178>
 - Google：绕过搜索结果网页链接重定向：<https://greasyfork.org/zh-CN/scripts/14150>
-- 自动在中英文之间加上个空格：<https://greasyfork.org/zh-CN/scripts/2185>
+- 为豆瓣电影页面添加更多实用讯息：<https://greasyfork.org/zh-CN/scripts/14636>
+- 拒绝二维码登录：淘宝、京东等网站默认出现账号密码登录界面：<https://greasyfork.org/zh-CN/scripts/27183>
