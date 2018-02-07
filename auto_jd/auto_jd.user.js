@@ -20,22 +20,22 @@
 // @grant               none
 // @run-at              document-start
 
-// @version             2.3.3
-// @modified            09/16/2016
+// @version             2.4.0
+// @modified            02/07/2018
 // ==/UserScript==
 
 
 ! function() {
-    "use strict";
 
-    var $_GET = (function(){
-        var url = location.search.toString();
-        var u = url.split("?", 2);
+    // get GET attributes
+    const $_GET = (function(){
+        let url = location.search;
+        let u = url.split("?", 2);
         if(typeof(u[1]) === "string"){
             u = u[1].split("&");
-            var get = {};
-            for(var i=0; i<u.length; i++) {
-                var j = u[i].split("=");
+            let get = {};
+            for(let i=0; i<u.length; i++) {
+                let j = u[i].split("=");
                 get[j[0]] = j[1];
             }
             return get;
@@ -44,21 +44,33 @@
             return {};
     })();
 
-    var href = location.search;
 
-    if (!$_GET.delivery)
-        href += "&delivery=1";
+    let href = location.search;
+
+
+    //搜索自营
+    if ($_GET.keyword &&
+        decodeURIComponent($_GET.keyword).indexOf('自营')<0 &&
+        !window.sessionStorage['auto_jd_changed_keyword'] )
+    {
+        href = href.replace($_GET.keyword, $_GET.keyword + ' 自营' );
+        window.sessionStorage['auto_jd_changed_keyword'] = true;
+    }
+
+
+    // 有货
     if (!$_GET.stock)
         href += "&stock=1";
-    /* 图书页面的京东配送 */
+    // 京东配送
     if (!$_GET.wtype)
         href += "&wtype=1";
-    /* 销量排序 */
+    // 销量排序
     if (!$_GET.psort)
         href += "&psort=3";
     /*某些分类页面*/
     if(!$_GET.sort)
         href += "&sort=sort_totalsales15_desc";
+
 
     if(location.search != href)
         location.search = href;
