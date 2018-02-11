@@ -39,4 +39,12 @@
             is_spacing = false;
         }
     }, false);
+
+    document.addEventListener('DOMSubtreeModified', function(e) {
+        if (!is_spacing) {
+            is_spacing = true;
+            pangu.spacingNode(e.target);
+            is_spacing = false;
+        }
+    }, false);
 }
