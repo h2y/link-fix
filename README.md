@@ -11,13 +11,11 @@
 
 传统的网页翻译插件将网页中的所有英文转换为中文，但用过的都知道，翻译出来的中文并不通顺，对于英语水平尚可的大多数中国用户而言，阅读这样的中文并不比原本的英文轻松多少。而该翻译工具不会直接全文翻译网页，而是保留全英文，同时将网页中的难词添加上注释，有效避免了全文翻译成中文后词不达意的情况。（该工具同时也支持划词翻译、全文翻译）
 
-> :+1 By 1860 the fort(堡垒) was remodeled(改造) into a military prison and became notorious(声名狼藉的) for incarcerating(监禁) gangsters(歹徒) including Al Capone.
+> ^O^ 部分翻译：By 1860 the fort(堡垒) was remodeled(改造) into a military prison and became notorious(声名狼藉的) for incarcerating(监禁) gangsters(歹徒) including Al Capone.
 >
-> :-1 到1860年,被改造成堡军事监狱关押罪犯包括艾尔·卡彭和声名狼藉。
+> T.T 全文翻译：到1860年,被改造成堡军事监狱关押罪犯包括艾尔·卡彭和声名狼藉。
 
 ![](https://cdn.rawgit.com/h2y/link-fix/master/youdao_translate/p1.jpg)
-
-本工具除了 UserScript 外，还提供书签栏小工具。用鼠标直接将链接【[有道一键网页翻译](javascript:%28function%28%29{var a=document.createElement%28"script"%29;a.id="outfox_seed_js";a.charset="utf-8",a.setAttribute%28"src","https://cdn.rawgit.com/h2y/link-fix/master/youdao_translate/youdao_translate.user.js"%29;document.body.appendChild%28a%29}%29%28%29)】拖拽到浏览器的书签栏，在需要翻译时点击该书签即可运行有道翻译工具。
 
 来源说明：本工具由网易官方的 [有道网页翻译 2.0](http://fanyi.youdao.com/web2/) 修改而成，这是猪厂提供的很好的一个服务，感谢。但由于年久失修原服务存在很多问题，已无法使用，于是我将其修复并打包成了该 UserScript。
 
@@ -73,9 +71,7 @@
 **Greasyfork 在线安装: <https://greasyfork.org/zh-CN/scripts/26709>**
 
 
-## /taobao_sort
-
-**淘宝销量排序**
+## 淘宝销量排序 /taobao_sort
 
 在淘宝天猫浏览商品时，自动为你首选 [按销量排序]，避免被潜在的竞价排名误伤。
 
