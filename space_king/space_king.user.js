@@ -15,12 +15,13 @@
 // @include             *
 // @exclude             /^https://www.google\..+tbm=isch/
 // @exclude             https://translate.google.*
+// @exclude             https://www.bilibili.com/video/*
 
 // @require             https://cdn.staticfile.org/pangu/3.3.0/pangu.min.js
 // @grant               none
 // *run-at              document-start
-// @version             3.3.0
-// @modified            29/01/2018
+// @version             3.3.1
+// @modified            08/21/2018
 // ==/UserScript==
 
 
