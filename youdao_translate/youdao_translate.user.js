@@ -17,8 +17,8 @@
 // @run-at              context-menu
 
 // @date                08/20/2018
-// @modified            08/20/2018
-// @version             2.0.1.0
+// @modified            12/13/2018
+// @version             2.1.0.1
 // ==/UserScript==
 
 
@@ -31,10 +31,6 @@
         t.src = "https://fanyi.youdao.com/web2/rl.do?action=w_try&ts=" + (new Date()).getTime();
         o[0] = t;
         alert("请在浏览英文网页时使用有道网页翻译2.0");
-        return
-    }
-    if (! (window.location.protocol == "http:" || window.location.protocol == "https:")) {
-        alert("请在浏览网页时使用有道网页翻译2.0");
         return
     }
     var q = "https://fanyi.youdao.com/web2";
