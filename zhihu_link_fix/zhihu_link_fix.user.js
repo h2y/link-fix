@@ -19,8 +19,8 @@
 // @include             *.zhihu.com/*
 
 // @date                06/10/2016
-// @modified            02/15/2017
-// @version             1.3.1.6
+// @modified            05/22/2019
+// @version             1.3.2.7
 // ==/UserScript==
 
 
@@ -32,7 +32,7 @@ if(location.host==='link.zhihu.com') {
 else
     window.addEventListener('click', function(e){
         let dom = e.target,
-            max_times = 3;
+            max_times = 5;
         while(dom && max_times--) {
             if(dom.nodeName.toUpperCase()==='A') {
                 let regRet = dom.search.match(/target=(.+?)(&|$)/);
