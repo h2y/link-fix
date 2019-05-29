@@ -14,13 +14,13 @@
 
 // require             https://cdn.staticfile.org/lightgallery/1.6.11/css/lightgallery.min.css
 // require             https://cdn.staticfile.org/lightgallery/1.6.11/js/lightgallery-all.min.js
-// @include             https://alpha.wallhaven.cc/*
+// @include             https://wallhaven.cc/*
 // @grant               none
 // @run-at              document-end
 
 // @date                05/02/2017
-// @modified            08/22/2018
-// @version             2.0.0
+// @modified            05/19/2019
+// @version             2.0.1
 // ==/UserScript==
 
 
@@ -190,7 +190,7 @@
             }
 
             // 单图页面
-            if(location.pathname.indexOf('/wallpaper/')==0)
+            if(location.pathname.indexOf('/w/')==0)
                 return this.workSingle();
 
             // latest pics
