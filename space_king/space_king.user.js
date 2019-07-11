@@ -10,18 +10,17 @@
 // @supportURL          https://github.com/h2y/link-fix
 // @icon                https://g.alicdn.com/mm/mm-brand/0.2.2/ico/favicon.ico
 // @license             GPL-3.0
-// @updateURL           https://github.com/h2y/link-fix/raw/master/space_king/space_king.user.js
 
 // @include             *
 // @exclude             /^https://www.google\..+tbm=isch/
 // @exclude             https://translate.google.*
 // @exclude             https://www.bilibili.com/video/*
 
-// @require             https://cdn.staticfile.org/pangu/3.3.0/pangu.min.js
+// @require             https://cdn.jsdelivr.net/npm/pangu@4.0.7/dist/browser/pangu.min.js
 // @grant               none
 // *run-at              document-start
-// @version             3.3.1
-// @modified            08/21/2018
+// @version             4.0.7
+// @modified            07/11/2019
 // ==/UserScript==
 
 
@@ -33,7 +32,7 @@
     is_spacing = false;
 
 
-    document.addEventListener('DOMNodeInserted', function(e) {
+    document.addEventListener('DOMNodeInserted', function (e) {
         if (!is_spacing) {
             is_spacing = true;
             pangu.spacingNode(e.target);
