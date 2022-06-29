@@ -27,7 +27,7 @@
 // @grant               window.onurlchange
 // @run-at              document_end
 
-// @date                106/29/2022
+// @date                06/29/2022
 // @modified            06/29/2022
 // @version             1.5.0.00
 // ==/UserScript==
