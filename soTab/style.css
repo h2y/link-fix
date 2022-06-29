@@ -11,23 +11,22 @@
   width: 300px;
   z-index: 9999999;
   transition: all 400ms;
+  font-size: 14px;
 }
 .soTab:hover {
-    left: 5px;
-    opacity: 1;
-    border-radius: 10px;
-    box-shadow: 5px -5px 10px #777;
+  left: 0px;
+  opacity: 1;
+  border-radius: 10px;
+  box-shadow: 5px -5px 10px #777;
 }
-
 .soTab p {
-    margin: 0;
+  margin: 0;
 }
 p.soTab_title {
   font-weight: bold;
   margin-bottom: 3px;
 }
-
 .soTab a {
   color: #0cf;
-  margin-right: 1rem;
+  margin-right: 25px;
 }
