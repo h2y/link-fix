@@ -32,202 +32,202 @@
 // @version             1.5.0.00
 // ==/UserScript==
 (function () {
-    // ts-check
-  
-    function soTabInit() {
-      if (top !== window) {
-        console.log('soTab! not top window');
-        return;
+  // ts-check
+
+  function soTabInit() {
+    if (top !== window) {
+      console.log('soTab! not top window');
+      return;
+    }
+
+    // 判断搜索引擎，将仅使用hostname适配
+    const sites = [
+      'baidu',
+      'bing',
+      'so.com',
+      '',
+      'zhihu',
+      'google',
+      'soku',
+      'sogou',
+    ];
+    const sitesName = [
+      '百度',
+      '必应',
+      '好搜',
+      'ALLSO',
+      '知乎',
+      '谷歌',
+      '搜库',
+      '搜狗',
+    ];
+    let siteID = -1;
+
+    for (const site of sites) {
+      if (site && location.hostname.includes(site)) {
+        siteID = sites.indexOf(site);
+        break;
       }
-  
-      // 判断搜索引擎，将仅使用hostname适配
-      const sites = [
-        'baidu',
-        'bing',
-        'so.com',
-        '',
-        'zhihu',
-        'google',
-        'soku',
-        'sogou',
-      ];
-      const sitesName = [
-        '百度',
-        '必应',
-        '好搜',
-        'ALLSO',
-        '知乎',
-        '谷歌',
-        '搜库',
-        '搜狗',
-      ];
-      let siteID = -1;
-  
-      for (const site of sites) {
-        if (site && location.hostname.includes(site)) {
-          siteID = sites.indexOf(site);
-          break;
-        }
-      }
-  
-      if (siteID === -1) {
-        console.log("soTab can't match site.");
-        return;
-      }
-  
-      // 判断搜索类型，使用href适配
-      let kind = [];
-      // eslint-disable-next-line default-case
-      switch (siteID) {
-        case 0:
-          kind = [
-            'www.baidu',
-            'image.baidu',
-            'zhidao.baidu.com/search',
-            'v.baidu',
-            'xueshu.baidu.com/s',
-          ];
-          break;
-        case 1: // bing
-          kind = [
-            '.com/search',
-            '.com/images',
-            '.com/knows/search',
-            '.com/videos',
-            '/academic/search',
-          ];
-          break;
-        case 2:
-          kind = [
-            'www.so',
-            'image.so',
-            'wenda.so.com/search',
-            'video.so',
-          ];
-          break;
-        case 4: // zhihu
-          kind = ['', '', '.com/search'];
-          break;
-        case 5: // google
-          kind = ['', 'tbm=isch', '', 'tbm=vid', 'scholar.google'];
-          break;
-        case 6:
-          // kind[3] = "soku";
-          break;
-        case 7: // sogou
-          kind = [
-            ['/web?', '/sogou?', 'weixin.sogou', 'english.sogou'],
-            'pic.sogou',
-            [
-              'interation=196636',
-              'mingyi.sogou',
-              'wenwen.sogou',
-              '.com/zhihu',
-            ],
-            'v.sogou',
-            '.com/xueshu',
-          ];
-          break;
-      }
-      // 0:normal  1:pic  2:zhidao  3:video  4:xueshu
-      let kindID = -1;
-      for (let i = 0; i < kind.length; i++) {
-        if (Array.isArray(kind[i])) {
-          // 数组形式
-          for (let j = 0; j < kind[i].length; j++) {
-            if (location.href.includes(kind[i][j])) {
-              kindID = i;
-              break;
-            }
+    }
+
+    if (siteID === -1) {
+      console.log("soTab can't match site.");
+      return;
+    }
+
+    // 判断搜索类型，使用href适配
+    let kind = [];
+    // eslint-disable-next-line default-case
+    switch (siteID) {
+      case 0:
+        kind = [
+          'www.baidu',
+          'image.baidu',
+          'zhidao.baidu.com/search',
+          'v.baidu',
+          'xueshu.baidu.com/s',
+        ];
+        break;
+      case 1: // bing
+        kind = [
+          '.com/search',
+          '.com/images',
+          '.com/knows/search',
+          '.com/videos',
+          '/academic/search',
+        ];
+        break;
+      case 2:
+        kind = [
+          'www.so',
+          'image.so',
+          'wenda.so.com/search',
+          'video.so',
+        ];
+        break;
+      case 4: // zhihu
+        kind = ['', '', '.com/search'];
+        break;
+      case 5: // google
+        kind = ['', 'tbm=isch', '', 'tbm=vid', 'scholar.google'];
+        break;
+      case 6:
+        // kind[3] = "soku";
+        break;
+      case 7: // sogou
+        kind = [
+          ['/web?', '/sogou?', 'weixin.sogou', 'english.sogou'],
+          'pic.sogou',
+          [
+            'interation=196636',
+            'mingyi.sogou',
+            'wenwen.sogou',
+            '.com/zhihu',
+          ],
+          'v.sogou',
+          '.com/xueshu',
+        ];
+        break;
+    }
+    // 0:normal  1:pic  2:zhidao  3:video  4:xueshu
+    let kindID = -1;
+    for (let i = 0; i < kind.length; i++) {
+      if (Array.isArray(kind[i])) {
+        // 数组形式
+        for (let j = 0; j < kind[i].length; j++) {
+          if (location.href.includes(kind[i][j])) {
+            kindID = i;
+            break;
           }
-          if (kindID !== -1) break;
-        } else if (location.href.indexOf(kind[i]) >= 0) {
-          kindID = i;
-          break;
         }
+        if (kindID !== -1) break;
+      } else if (location.href.indexOf(kind[i]) >= 0) {
+        kindID = i;
+        break;
       }
-      // 谷歌特殊处理
-      if (siteID === 5 && kindID === -1) {
-        if (location.href.indexOf('q=') >= 0) kindID = 0;
+    }
+    // 谷歌特殊处理
+    if (siteID === 5 && kindID === -1) {
+      if (location.href.indexOf('q=') >= 0) kindID = 0;
+    }
+    if (kindID === -1) {
+      console.log('soTab! no kind found');
+      return;
+    }
+
+    // 初始化搜索路径
+    // "百度", "必应", "好搜", "ALLSO", "知乎", "谷歌", "搜库", "搜狗"
+    let links = []; // link[siteID]
+    if (kindID === 0) {
+      // normal
+      links = [
+        'https://www.baidu.com/s?wd=',
+        'https://cn.bing.com/search?q=',
+        'https://www.so.com/s?q=',
+        'http://h2y.github.io/allso/#',
+        '',
+        'https://www.google.com/search?q=',
+        '',
+        'https://www.sogou.com/web?query=',
+      ];
+    } else if (kindID === 1) {
+      // pic
+      links = [
+        'https://image.baidu.com/search/index?tn=baiduimage&word=',
+        'https://cn.bing.com/images/search?q=',
+        'https://image.so.com/i?q=',
+        '',
+        '',
+        'https://www.google.com/search?tbm=isch&q=',
+      ];
+    } else if (kindID === 2) {
+      // zhidao
+      links = [
+        'https://zhidao.baidu.com/search?word=',
+        'https://cn.bing.com/knows/search?q=',
+        '',
+        '',
+        'https://www.zhihu.com/search?q=',
+        '',
+        '',
+        'http://www.sogou.com/sogou?interation=196636&query=',
+      ];
+    } else if (kindID === 3) {
+      // video
+      links = [
+        'https://v.baidu.com/v?ie=utf-8&word=',
+        '',
+        'https://video.so.com/v?q=',
+        '',
+        '',
+        'https://www.google.com/search?tbm=vid&q=',
+        'https://www.soku.com/v?keyword=',
+      ];
+    } else if (kindID === 4) {
+      // xueshu
+      links = [
+        'https://xueshu.baidu.com/s?wd=',
+        'https://cn.bing.com/academic/search?q=',
+        '',
+        '',
+        '',
+        'https://scholar.google.com/scholar?q=',
+      ];
+    }
+
+    // 从url的searchParams中获取搜索关键词
+    const searchParams = new URLSearchParams(location.search);
+    const searchKeyWords = ['wd', 'word', 'w', 'q', 'query', 'search'];
+    let searchWords = '';
+    searchKeyWords.forEach((keyWord) => {
+      if (searchParams.has(keyWord)) {
+        searchWords = searchParams.get(keyWord);
       }
-      if (kindID === -1) {
-        console.log('soTab! no kind found');
-        return;
-      }
-  
-      // 初始化搜索路径
-      // "百度", "必应", "好搜", "ALLSO", "知乎", "谷歌", "搜库", "搜狗"
-      let links = []; // link[siteID]
-      if (kindID === 0) {
-        // normal
-        links = [
-          'https://www.baidu.com/s?wd=',
-          'https://cn.bing.com/search?q=',
-          'https://www.so.com/s?q=',
-          'http://h2y.github.io/allso/#',
-          '',
-          'https://www.google.com/search?q=',
-          '',
-          'https://www.sogou.com/web?query=',
-        ];
-      } else if (kindID === 1) {
-        // pic
-        links = [
-          'https://image.baidu.com/search/index?tn=baiduimage&word=',
-          'https://cn.bing.com/images/search?q=',
-          'https://image.so.com/i?q=',
-          '',
-          '',
-          'https://www.google.com/search?tbm=isch&q=',
-        ];
-      } else if (kindID === 2) {
-        // zhidao
-        links = [
-          'https://zhidao.baidu.com/search?word=',
-          'https://cn.bing.com/knows/search?q=',
-          '',
-          '',
-          'https://www.zhihu.com/search?q=',
-          '',
-          '',
-          'http://www.sogou.com/sogou?interation=196636&query=',
-        ];
-      } else if (kindID === 3) {
-        // video
-        links = [
-          'https://v.baidu.com/v?ie=utf-8&word=',
-          '',
-          'https://video.so.com/v?q=',
-          '',
-          '',
-          'https://www.google.com/search?tbm=vid&q=',
-          'https://www.soku.com/v?keyword=',
-        ];
-      } else if (kindID === 4) {
-        // xueshu
-        links = [
-          'https://xueshu.baidu.com/s?wd=',
-          'https://cn.bing.com/academic/search?q=',
-          '',
-          '',
-          '',
-          'https://scholar.google.com/scholar?q=',
-        ];
-      }
-  
-      // 从url的searchParams中获取搜索关键词
-      const searchParams = new URLSearchParams(location.search);
-      const searchKeyWords = ['wd', 'word', 'w', 'q', 'query', 'search'];
-      let searchWords = '';
-      searchKeyWords.forEach((keyWord) => {
-        if (searchParams.has(keyWord)) {
-          searchWords = searchParams.get(keyWord);
-        }
-      });
-  
-      // 加载css
-  
-      const styleText = `
+    });
+
+    // 加载css
+
+    const styleText = `
               .soTab {
                   position: fixed;
                   background-color: #000;
@@ -262,33 +262,38 @@
               }
   
               `;
+    // 生成切换框
+    const bodyDOM = document.getElementsByTagName('body')[0];
+    const soTabPanelDOM = document.createElement('div');
+    soTabPanelDOM.id = 'soTab';
+    let str = "<p class='soTab_title'>soTab 一键切换引擎：</p><p>";
+    for (const link of links) {
+      if (link && links.indexOf(link) !== siteID) {
+        str += `<a href='${link}${searchWords}' target='_blank'>${sitesName[links.indexOf(link)]}</a>`;
+      }
+    }
+
+    soTabPanelDOM.innerHTML = `${str}</p>`;
+    soTabPanelDOM.className = `soTab soTab_site${siteID} soTab_kind${kindID}`;
+    const oldSoTabDOM = document.getElementById('soTab');
+    if (oldSoTabDOM) {
+      oldSoTabDOM.remove();
+    }
+    setTimeout(() => {
       // eslint-disable-next-line no-undef
       GM_addStyle(styleText);
-  
-      // 生成切换框
-      const bodyDOM = document.getElementsByTagName('body')[0];
-      const soTabPanelDOM = document.createElement('div');
-      soTabPanelDOM.id = 'soTab';
-      let str = "<p class='soTab_title'>soTab 一键切换引擎：</p><p>";
-  
-      for (const link of links) {
-        if (link && links.indexOf(link) !== siteID) {
-          str += `<a href='${link}${searchWords}' target='_blank'>${sitesName[links.indexOf(link)]}</a>`;
-        }
-      }
-  
-      soTabPanelDOM.innerHTML = `${str}</p>`;
-      soTabPanelDOM.className = `soTab soTab_site${siteID} soTab_kind${kindID}`;
       bodyDOM.appendChild(soTabPanelDOM);
-    }
-    if (window.onurlchange === null) {
-      // feature is supported
-      window.addEventListener('urlchange', () => {
-        window.location.reload();
-      });
-    }
-    if (top === window) {
-      console.log('init sotab here');
+    });
+  }
+  if (window.onurlchange === null) {
+    // feature is supported
+    window.addEventListener('urlchange', () => {
+      console.log('url has changed');
       soTabInit();
-    }
-  }()); // end userScript
+    });
+  }
+  if (top === window) {
+    console.log('init sotab here');
+    soTabInit();
+  }
+}()); // end userScript
