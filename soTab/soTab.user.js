@@ -27,9 +27,9 @@
 // @grant               window.onurlchange
 // @run-at              document_end
 
-// @date                06/29/2022
-// @modified            06/29/2022
-// @version             1.5.0.00
+// @date                11/25/2022
+// @modified            11/25/2022
+// @version             1.5.1.00
 // ==/UserScript==
 (function () {
   // ts-check
@@ -221,7 +221,8 @@
     let searchWords = '';
     searchKeyWords.forEach((keyWord) => {
       if (searchParams.has(keyWord)) {
-        searchWords = searchParams.get(keyWord);
+        initialWords = searchParams.get(keyWord);
+        searchWords = encodeURIComponent(initialWords);
       }
     });
 
