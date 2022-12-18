@@ -29,12 +29,10 @@
 
 
 // @date                11/25/2022
-// @modified            11/25/2022
-// @version             1.5.1.00
+// @modified            12/18/2022
+// @version             1.5.2.00
 // ==/UserScript==
 (function () {
-  // ts-check
-
   function soTabInit() {
     if (top !== window) {
       console.log('soTab! not top window');
@@ -222,7 +220,7 @@
     let searchWords = '';
     searchKeyWords.forEach((keyWord) => {
       if (searchParams.has(keyWord)) {
-        initialWords = searchParams.get(keyWord);
+        const initialWords = searchParams.get(keyWord);
         searchWords = encodeURIComponent(initialWords);
       }
     });
@@ -262,7 +260,7 @@
                   color: #0cf;
                   margin-right: 25px;
               }
-  
+
               `;
     // 生成切换框
     const bodyDOM = document.getElementsByTagName('body')[0];
@@ -276,16 +274,14 @@
     }
 
     soTabPanelDOM.innerHTML = `${str}</p>`;
-    soTabPanelDOM.className = `soTab soTab_site${siteID} soTab_kind${kindID}`;
+    soTabPanelDOM.className = `b_soTab soTab soTab_site${siteID} soTab_kind${kindID}`;// b_必须放在className首位，否则bing会监听增加的DOM并删除增加的元素
     const oldSoTabDOM = document.getElementById('soTab');
     if (oldSoTabDOM) {
       oldSoTabDOM.remove();
     }
-    setTimeout(() => {
-      // eslint-disable-next-line no-undef
-      GM_addStyle(styleText);
-      bodyDOM.appendChild(soTabPanelDOM);
-    });
+    const style = GM_addStyle(styleText);
+    style.dataset.for = "result"; // 给style标签加上data-for= "result"属性，防止被百度删除
+    bodyDOM.prepend(soTabPanelDOM);// 将dom添加到body前面，防止被百度和BING删除
   }
   if (window.onurlchange === null) {
     // feature is supported
