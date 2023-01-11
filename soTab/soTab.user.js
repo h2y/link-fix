@@ -220,7 +220,7 @@
     let searchWords = '';
     searchKeyWords.forEach((keyWord) => {
       if (searchParams.has(keyWord)) {
-        const initialWords = searchParams.get(keyWord);
+        let initialWords = searchParams.get(keyWord);
         searchWords = encodeURIComponent(initialWords);
       }
     });
