@@ -5,6 +5,14 @@
 如果你不知道浏览器脚本是什么，我的这篇文章会给与你帮助：[<使用UserScript加强你的浏览器>](https://hzy.pw/p/1872)，一定会让你受益匪浅。
 
 
+## F2 重设页面标题 /reset_title
+
+当您在浏览网页时，想要设置一个更加个性化的页面标题，而不是使用默认的标题时，按下 F2 您就可以改名啦~ （＾Ｕ＾）ノ~ＹＯ
+
+而且，这个脚本的特点就是不仅仅只是在当前页面有效，就算您刷新或者跳转到其他链接，设置的标题也会一直被保留下来哦~ 这样就可以方便您更好地区分出不同的标签页啦~ （＾ｖ＾）
+
+**Greasyfork 在线安装: <https://greasyfork.org/zh-CN/scripts/468161>**
+
 ## 有道一键网页翻译 /youdao_translate
 
 ![](https://h2y.github.io/link-fix/youdao_translate/p2.png)
